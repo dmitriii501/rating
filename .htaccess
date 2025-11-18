@@ -1,10 +1,5 @@
-# Apache/Passenger configuration for Flask app on reg.ru hosting
+# Apache configuration for Flask app on reg.ru hosting (Rewrite -> index.wsgi)
 # Проект размещён в /var/www/u3325711/data/www/your-efficient.ru
-
-PassengerAppRoot /var/www/u3325711/data/www/your-efficient.ru
-PassengerAppEnv production
-PassengerPython /var/www/u3325711/data/www/your-efficient.ru/venv/bin/python3
-PassengerLogFile /var/www/u3325711/data/logs/passenger_wsgi.log
 
 Options +ExecCGI
 AddHandler wsgi-script .wsgi

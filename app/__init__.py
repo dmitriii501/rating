@@ -78,6 +78,21 @@ def create_app() -> Flask:
 				# If that also fails, log but don't crash
 				import logging
 				logging.warning(f"Database initialization warning: {e}")
+		
+		# Create default admin if no admins exist
+		try:
+			from .models import Admin
+			if not Admin.query.first():
+				admin = Admin(username="admin")
+				admin.set_password("admin123")
+				db.session.add(admin)
+				db.session.commit()
+				import logging
+				logging.info("Default administrator created: username='admin', password='admin123'")
+		except Exception as e:
+			# If admin creation fails, log but don't crash
+			import logging
+			logging.warning(f"Admin initialization warning: {e}")
 
 	return app
 

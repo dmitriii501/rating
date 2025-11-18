@@ -7,10 +7,9 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-from app import create_app
+from app import app as application
 
-app = create_app()
-application = app
+app = application
 
 if __name__ == "__main__":
     app.run()

@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from dotenv import load_dotenv
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -14,6 +15,7 @@ def create_app() -> Flask:
 	"""
 	Application factory. Configures Flask, database, login manager, and blueprints.
 	"""
+	load_dotenv()
 	app = Flask(__name__, static_folder="static", template_folder="templates")
 
 	# Configuration
@@ -59,4 +61,6 @@ def create_app() -> Flask:
 
 	return app
 
+
+app = create_app()
 

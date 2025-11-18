@@ -224,14 +224,11 @@ chmod -R 755 app/
 
 ```apache
 # Замените эти пути на реальные:
-WSGIDaemonProcess student_rating python-home=/var/www/u3325711/data/www/your-efficient.ru/venv python-path=/var/www/u3325711/data/www/your-efficient.ru
-WSGIScriptAlias / /var/www/u3325711/data/www/your-efficient.ru/wsgi.py
-
-<Directory /var/www/u3325711/data/www/your-efficient.ru>
-    WSGIProcessGroup student_rating
-    WSGIApplicationGroup %{GLOBAL}
-    Require all granted
-</Directory>
+# Для reg.ru c index.wsgi (Passenger)
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.wsgi/$1 [QSA,PT,L]
 ```
 
 **Как узнать полный путь:**

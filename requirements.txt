@@ -3,8 +3,7 @@ Flask-SQLAlchemy==3.1.1
 Flask-Migrate==4.0.5
 Flask-Login==0.6.3
 python-dotenv==1.0.1
-psycopg[binary]
+gunicorn==21.2.0
+psycopg[binary]==3.1.18
 # If you plan to use MySQL instead of PostgreSQL, install:
 # mysqlclient==2.2.4
-
-

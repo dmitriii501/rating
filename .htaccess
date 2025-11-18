@@ -1,0 +1,25 @@
+# Apache configuration for Flask app on Timeweb shared hosting
+# Поместите файл в директорию public_html выбранного домена
+
+Options +ExecCGI
+AddHandler wsgi-script .wsgi
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.wsgi/$1 [QSA,PT,L]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "\.(env|ini|log|sql|db)$">
+    Require all denied
+</FilesMatch>

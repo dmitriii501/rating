@@ -1,0 +1,23 @@
+:root {
+	--beige-1: #f8f6f0;
+	--beige-2: #f5f5dc;
+	--beige-3: #e8e6e1;
+}
+.bg-beige {
+	background: linear-gradient(180deg, var(--beige-1), var(--beige-2));
+	min-height: 100vh;
+}
+.card-link {
+	text-decoration: none;
+	color: inherit;
+	border: 1px solid rgba(0,0,0,.1);
+}
+.card-link:hover {
+	border-color: rgba(0,0,0,.2);
+	box-shadow: 0 .25rem .5rem rgba(0,0,0,.05);
+}
+table th, table td {
+	vertical-align: middle;
+}
+
+

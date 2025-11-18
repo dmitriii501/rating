@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Профиль — {{ user.name }}{% endblock %}
+{% block content %}
+<div class="p-4 bg-white rounded border">
+	<h1 class="h4 mb-1">{{ user.name }}</h1>
+	<div class="text-muted mb-3">
+		Отдел: {{ user.department.name if user.department else "-" }} • Дата вступления: {{ user.join_date }}
+	</div>
+	<h2 class="h6">История начислений</h2>
+	<div class="table-responsive">
+		<table class="table table-sm table-striped align-middle">
+			<thead>
+			<tr>
+				<th>Дата</th>
+				<th>Активность</th>
+				<th class="text-end">Баллы</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for s in scores %}
+			<tr>
+				<td>{{ s.date.strftime('%Y-%m-%d %H:%M') }}</td>
+				<td>{{ s.activity.name }}</td>
+				<td class="text-end fw-semibold">+{{ s.points }}</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="mt-2">
+		Всего за последние {{ scores|length }} записей: <span class="fw-semibold">{{ total }}</span>
+	</div>
+</div>
+{% endblock %}
+
+

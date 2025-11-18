@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Админ — Активности{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+	<h1 class="h5">Активности</h1>
+	<a class="btn btn-outline-danger" href="{{ url_for('admin.logout') }}">Выйти</a>
+	</div>
+<div class="row g-3">
+	<div class="col-lg-6">
+		<div class="p-3 bg-white rounded border">
+			<div class="fw-semibold mb-2">Список активностей</div>
+			<ul class="list-group">
+				{% for a in activities %}
+				<li class="list-group-item d-flex justify-content-between">
+					<div>
+						<div class="fw-semibold">{{ a.name }}</div>
+						<div class="small text-muted">{{ a.description or '—' }}</div>
+					</div>
+					<form method="post" action="{{ url_for('admin.delete_activity', activity_id=a.id) }}">
+						<button class="btn btn-sm btn-outline-danger" type="submit">Удалить</button>
+					</form>
+				</li>
+				{% endfor %}
+			</ul>
+			{% if not activities %}
+				<div class="text-muted">Пока нет активностей.</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="p-3 bg-white rounded border">
+			<div class="fw-semibold mb-2">Добавить активность</div>
+			<form method="post">
+				<div class="mb-3">
+					<label class="form-label">Название</label>
+					<input class="form-control" type="text" name="name" required>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Описание</label>
+					<textarea class="form-control" name="description" rows="2"></textarea>
+				</div>
+				<button class="btn btn-dark" type="submit">Добавить</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+

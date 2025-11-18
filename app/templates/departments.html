@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Отделы{% endblock %}
+{% block content %}
+<div class="p-4 bg-white rounded border">
+	<h1 class="h4 mb-3">Отделы</h1>
+	<div class="row g-3">
+		{% for d in departments %}
+		<div class="col-sm-6 col-lg-4">
+			<a class="card card-link h-100" href="{{ url_for('public.department_rating', dept_id=d.id) }}">
+				<div class="card-body">
+					<div class="fw-semibold">{{ d.name }}</div>
+					<div class="small text-muted">Участников: {{ d.users.count() }}</div>
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+	{% if not departments %}
+		<div class="text-muted">Отделы пока не созданы.</div>
+	{% endif %}
+</div>
+{% endblock %}
+
+

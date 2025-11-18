@@ -59,6 +59,26 @@ def create_app() -> Flask:
 	app.register_blueprint(public_bp)
 	app.register_blueprint(admin_bp, url_prefix="/admin")
 
+	# Initialize database tables if they don't exist
+	with app.app_context():
+		try:
+			# Check if tables exist by trying to query alembic_version
+			from sqlalchemy import inspect
+			inspector = inspect(db.engine)
+			tables = inspector.get_table_names()
+			
+			# If no tables exist, create them
+			if not tables:
+				db.create_all()
+		except Exception as e:
+			# If inspection fails, try to create tables anyway
+			try:
+				db.create_all()
+			except Exception:
+				# If that also fails, log but don't crash
+				import logging
+				logging.warning(f"Database initialization warning: {e}")
+
 	return app
 
 

@@ -109,7 +109,7 @@ instance/
 
 2. **Загрузите файлы**:
    - Подключитесь к серверу
-   - Перейдите в директорию `public_html` или `www` (или ту, которую указал reg.ru)
+   - Перейдите в директорию `public_html` или `www` (для этого проекта: `/var/www/u3325711/data/www/your-efficient.ru`)
    - Загрузите все файлы из пункта 2.2, сохраняя структуру папок
 
 3. **Проверьте структуру на сервере**:
@@ -131,11 +131,11 @@ instance/
 tar -czf rating.tar.gz app/ migrations/ wsgi.py run.py create_admin.py seed_data.py generate_secret_key.py requirements.txt .htaccess
 
 # Загрузите через SCP
-scp rating.tar.gz user@your-server.ru:/path/to/public_html/
+scp rating.tar.gz user@your-server.ru:/var/www/u3325711/data/www/your-efficient.ru/
 
 # На сервере распакуйте
 ssh user@your-server.ru
-cd /path/to/public_html/
+cd /var/www/u3325711/data/www/your-efficient.ru/
 tar -xzf rating.tar.gz
 ```
 
@@ -151,7 +151,7 @@ tar -xzf rating.tar.gz
 
 ```bash
 # Перейдите в директорию проекта
-cd /path/to/public_html/
+cd /var/www/u3325711/data/www/your-efficient.ru/
 
 # Создайте виртуальное окружение
 python3 -m venv venv
@@ -224,10 +224,10 @@ chmod -R 755 app/
 
 ```apache
 # Замените эти пути на реальные:
-WSGIDaemonProcess student_rating python-home=/полный/путь/к/venv python-path=/полный/путь/к/проекту
-WSGIScriptAlias / /полный/путь/к/проекту/wsgi.py
+WSGIDaemonProcess student_rating python-home=/var/www/u3325711/data/www/your-efficient.ru/venv python-path=/var/www/u3325711/data/www/your-efficient.ru
+WSGIScriptAlias / /var/www/u3325711/data/www/your-efficient.ru/wsgi.py
 
-<Directory /полный/путь/к/проекту>
+<Directory /var/www/u3325711/data/www/your-efficient.ru>
     WSGIProcessGroup student_rating
     WSGIApplicationGroup %{GLOBAL}
     Require all granted
@@ -236,7 +236,7 @@ WSGIScriptAlias / /полный/путь/к/проекту/wsgi.py
 
 **Как узнать полный путь:**
 ```bash
-pwd  # покажет текущий путь
+pwd  # покажет текущий путь, для проекта это /var/www/u3325711/data/www/your-efficient.ru
 ```
 
 ---

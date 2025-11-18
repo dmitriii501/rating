@@ -1,8 +1,17 @@
-# Apache configuration for Flask app on Timeweb shared hosting
-# Поместите файл в директорию public_html выбранного домена
+# Apache configuration for Flask app on reg.ru hosting
+# Проект размещён в /var/www/u3325711/data/www/your-efficient.ru
 
 Options +ExecCGI
 AddHandler wsgi-script .wsgi
+
+WSGIDaemonProcess rating python-home=/var/www/u3325711/data/www/your-efficient.ru/venv python-path=/var/www/u3325711/data/www/your-efficient.ru
+WSGIScriptAlias / /var/www/u3325711/data/www/your-efficient.ru/wsgi.py
+
+<Directory /var/www/u3325711/data/www/your-efficient.ru>
+    WSGIProcessGroup rating
+    WSGIApplicationGroup %{GLOBAL}
+    Require all granted
+</Directory>
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f

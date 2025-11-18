@@ -224,7 +224,11 @@ chmod -R 755 app/
 
 ```apache
 # Замените эти пути на реальные:
-# Для reg.ru c index.wsgi (Passenger)
+# Для reg.ru c Passenger + index.wsgi
+PassengerAppRoot /var/www/u3325711/data/www/your-efficient.ru
+PassengerAppEnv production
+PassengerPython /var/www/u3325711/data/www/your-efficient.ru/venv/bin/python3
+PassengerLogFile /var/www/u3325711/data/logs/passenger_wsgi.log
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -1,23 +1,94 @@
 :root {
-	--beige-1: #f8f6f0;
-	--beige-2: #f5f5dc;
-	--beige-3: #e8e6e1;
+    --beige-1: #f8f6f0;
+    --beige-2: #f5f5dc;
+    --beige-3: #e8e6e1;
+
+    --radius-card: 14px;
+    --radius-table: 12px;
+
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.09);
 }
+
+/* Фон */
 .bg-beige {
-	background: linear-gradient(180deg, var(--beige-1), var(--beige-2));
-	min-height: 100vh;
+    background: linear-gradient(180deg, var(--beige-1), var(--beige-2));
+    min-height: 100vh;
 }
+
+/* Карточки */
+.card,
+.p-4.bg-white,
+.p-3.bg-white,
+.list-group-item {
+    border-radius: var(--radius-card) !important;
+    border: 1px solid rgba(0,0,0,0.08) !important;
+    box-shadow: var(--shadow-soft);
+}
+
+/* Навбар */
+.navbar {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.navbar-brand {
+    font-weight: 700;
+}
+
+/* Ховер карточек */
 .card-link {
-	text-decoration: none;
-	color: inherit;
-	border: 1px solid rgba(0,0,0,.1);
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-card);
+    transition: .2s;
 }
 .card-link:hover {
-	border-color: rgba(0,0,0,.2);
-	box-shadow: 0 .25rem .5rem rgba(0,0,0,.05);
-}
-table th, table td {
-	vertical-align: middle;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
 }
 
+/* Таблицы */
+.table {
+    border-radius: var(--radius-table);
+    overflow: hidden;
+}
 
+.table thead {
+    background: #fafafa;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0,0,0,0.04);
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/* Формы */
+.form-control, .form-select, .btn {
+    border-radius: 10px !important;
+}
+
+/* Кнопки */
+.btn-dark {
+    border-radius: 10px !important;
+    box-shadow: var(--shadow-soft);
+}
+.btn-dark:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* Адаптация под 9:16 */
+@media (max-width: 500px) {
+    .card,
+    .p-4.bg-white,
+    .p-3.bg-white {
+        padding: 1.2rem !important;
+    }
+    h1, h2, h3, .h4, .h5 {
+        font-size: 1.1rem !important;
+    }
+    .table {
+        font-size: 0.9rem;
+    }
+}
